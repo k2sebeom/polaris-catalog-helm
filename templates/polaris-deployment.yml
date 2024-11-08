@@ -23,3 +23,8 @@ spec:
           ports:
             - containerPort: 8181
             - containerPort: 8182
+        {{- if .Values.spark.enabled }}
+        - name: spark
+          image: {{ .Values.spark.image }}
+          command: {{- toYaml .Values.spark.command | nindent 12 }} 
+        {{- end }}

@@ -5,3 +5,12 @@ polaris:
 
   image: "k2sebeom/polaris:latest"
   imagePullSecret: ""
+
+spark:
+  enabled: true
+  image: spark:3.4.4-python3
+
+  command:
+    - "tail"
+    - "-f"
+    - "/dev/null"
