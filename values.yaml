@@ -1,0 +1,7 @@
+fullnameOverride: polaris-catalog
+
+polaris:
+  replicas: 1
+
+  image: "k2sebeom/polaris:latest"
+  imagePullSecret: ""

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Values.fullnameOverride }}
+spec:
+  replicas: {{ .Values.polaris.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.fullnameOverride }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.fullnameOverride }}
+    spec:
+      {{- if .Values.polaris.imagePullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.polaris.imagePullSecret }}
+      {{- end }}
+      containers:
+        - name: polaris
+          image: {{ .Values.polaris.image }}
+          ports:
+            - containerPort: 8181
+            - containerPort: 8182
